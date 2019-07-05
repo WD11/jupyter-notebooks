@@ -4,6 +4,41 @@ set -eo pipefail
 
 set -x
 
+
+
+
+# Copy files into volume if specified and change notebook directory.
+
+JUPYTER_NOTEBOOK_DIR=${JUPYTER_NOTEBOOK_DIR:-/opt/app-root/src}
+
+if [ x"${PERSISTENT_VOLUME_ROOTDIR}" != x"" ]; then
+    PERSISTENT_VOLUME_WORKSPACE=${PERSISTENT_VOLUME_WORKSPACE:-work}
+
+    WORKDIR=${PERSISTENT_VOLUME_ROOTDIR}/${PERSISTENT_VOLUME_WORKSPACE}
+
+    if [ ! -d ${WORKDIR} ]; then
+        mkdir -p ${WORKDIR}
+        cp -rp ${JUPYTER_NOTEBOOK_DIR}/. ${WORKDIR}
+    fi
+
+    JUPYTER_NOTEBOOK_DIR=${PERSISTENT_VOLUME_ROOTDIR}
+fi
+
+NOTEBOOK_ARGS="$NOTEBOOK_ARGS --notebook-dir=${JUPYTER_NOTEBOOK_DIR}"
+
+cd ${JUPYTER_NOTEBOOK_DIR}
+
+
+
+
+
+
+
+
+
+
+
+
 # Generate htdigest password file for webdav access if it doesn't exist.
 
 JUPYTER_ENABLE_WEBDAV=${JUPYTER_ENABLE_WEBDAV:-false}
