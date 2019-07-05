@@ -2,16 +2,16 @@ FROM myproject/s2i-minimal-notebook:3.6
 
 USER root
 
-COPY . /tmp/src
-
-RUN rm -rf /tmp/src/.git* && \
-    chown -R 1001 /tmp/src && \
-    chgrp -R 0 /tmp/src && \
-    chmod -R g+w /tmp/src && \
-    rm -rf /tmp/scripts && \
-    mv /tmp/src/.s2i/bin /tmp/scripts && \
-    rm -rf /opt/app-root/builder/  && \
-    cp -rp /tmp/src/builder  /opt/app-root/builder
+#COPY . /tmp/src
+#
+#RUN rm -rf /tmp/src/.git* && \
+#    chown -R 1001 /tmp/src && \
+#    chgrp -R 0 /tmp/src && \
+#    chmod -R g+w /tmp/src && \
+#    rm -rf /tmp/scripts && \
+#    mv /tmp/src/.s2i/bin /tmp/scripts && \
+#    rm -rf /opt/app-root/builder/  && \
+#    cp -rp /tmp/src/builder  /opt/app-root/builder
 
 USER 1001
 
