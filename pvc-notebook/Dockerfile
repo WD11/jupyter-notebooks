@@ -1,4 +1,4 @@
-FROM centos/python-36-centos7:latest
+FROM myproject:s2i-minimal-notebook:3.6
 
 USER root
 
