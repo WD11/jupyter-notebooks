@@ -1,4 +1,4 @@
-FROM myproject:s2i-minimal-notebook:3.6
+FROM myproject/s2i-minimal-notebook:3.6
 
 USER root
 
