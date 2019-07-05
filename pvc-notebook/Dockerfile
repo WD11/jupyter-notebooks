@@ -10,7 +10,7 @@ RUN rm -rf /tmp/src/.git* && \
     chmod -R g+w /tmp/src && \
     rm -rf /tmp/scripts && \
     mv /tmp/src/.s2i/bin /tmp/scripts && \
-    rm /opt/app-root/builder/  && \
+    rm -rf /opt/app-root/builder/  && \
     cp -rp /tmp/src/builder  /opt/app-root/builder
 
 USER 1001
